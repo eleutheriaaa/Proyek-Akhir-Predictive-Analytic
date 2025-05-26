@@ -4,10 +4,10 @@
 
 Obesitas merupakan salah satu masalah kesehatan paling mendesak di dunia modern. Kondisi ini tidak hanya berdampak pada penampilan fisik, tetapi juga berisiko menimbulkan berbagai penyakit serius seperti diabetes tipe 2, tekanan darah tinggi, dan gangguan jantung. Di era modern, perubahan gaya hidup seperti konsumsi makanan tinggi kalori, kurangnya aktivitas fisik, serta kebiasaan duduk dalam waktu lama turut memperparah masalah obesitas
 
-Permasalahan obesitas diperlukan pemanfaatan teknologi untuk membantu proses deteksi dini. Salah satu pendekatan yang dapat digunakan adalah machine learning, yang mampu mempelajari pola dari data gaya hidup untuk memprediksi status obesitas dengan lebih akurat. Dengan adanya model klasifikasi dari Machine Learning  kita dapat menganalisis berbagai faktor seperti jenis kelamin, usia, kebiasaan makan, dan aktivitas fisik, lalu mengkategorikan individu ke dalam tingkat obesitas tertentu. Solusi ini tidak hanya berguna untuk tenaga medis, tetapi juga dapat digunakan oleh masyarakat umum untuk meningkatkan kesadaran dan pencegahan terhadap obesitas sejak dini
+Permasalahan obesitas diperlukan pemanfaatan teknologi untuk membantu proses deteksi dini. Salah satu pendekatan yang dapat digunakan adalah machine learning, yang mampu mempelajari pola dari data gaya hidup untuk memprediksi status obesitas dengan lebih akurat. Dengan adanya model klasifikasi dari Machine Learning  orang-orang dapat menganalisis berbagai faktor seperti jenis kelamin, usia, kebiasaan makan, dan aktivitas fisik, lalu mengkategorikan individu ke dalam tingkat obesitas tertentu. Solusi ini tidak hanya berguna untuk tenaga medis, tetapi juga dapat digunakan oleh masyarakat umum untuk meningkatkan kesadaran dan pencegahan terhadap obesitas sejak dini
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-Obesitas merupakan tantangan kesehatan global yang mendesak, dengan dampak serius terhadap kualitas hidup masyarakat. Jika terkena obesitas, kita terkena risiko  berbagai penyakit kronis seperti diabetes tipe 2, hipertensi, penyakit jantung, dan gangguan metabolik lainnya. Maka dari itu pentingnya menyelesaikan masalah obesitas ini  
+**Rumusan Masalah dan Penyelesaian Masalah**  
+Obesitas merupakan tantangan kesehatan global yang mendesak, dengan dampak serius terhadap kualitas hidup masyarakat. Jika terkena obesitas, masyarakat terkena risiko  berbagai penyakit kronis seperti diabetes tipe 2, hipertensi, penyakit jantung, dan gangguan metabolik lainnya. Maka dari itu pentingnya menyelesaikan masalah obesitas ini  
 Penyelesaian masalah obesitas penting karena:
 - Dampak Kesehatan: Obesitas berhubungan erat dengan peningkatan risiko penyakit kronis yang dapat menurunkan harapan hidup dan kualitas hidup seseorang
 - Beban Ekonomi: Biaya perawatan medis untuk penyakit terkait obesitas menambah beban pada sistem kesehatan dan ekonomi negara
@@ -44,7 +44,6 @@ Diharapkan model dapat melakukan prediksi secara otomatis dan akurat berdasarkan
 - Membandingkan performa beberapa algoritma klasifikasi seperti K-Nearest Neighbors, Random Forest, dan Logistic Regression untuk menentukan model terbaik  
 Evaluasi dilakukan menggunakan metrik akurasi, precision, recall, dan f1-score agar dapat dipilih model yang paling tepat untuk diterapkan di dunia nyata
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
 
     ### Solution statements
 - Perbandingan kinerja dari beberapa algoritma klasifikasi untuk mengidentifikasi model terbaik dalam klasifikasi tingkat obesitas
@@ -58,12 +57,17 @@ Dengan tujuan untuk menentukan model baseline terbaik berdasarkan kinerja klasif
 Tujuan: Mengoptimalkan model agar menghasilkan prediksi yang lebih akurat terhadap data yang belum pernah dilihat sebelumnya
 
 ## Data Understanding
-Dataset yang saya gunakan dalam proyek ini dapat diunduh melalui link atau tautan ini : https://www.kaggle.com/datasets/fatemehmehrparvar/obesity-levels?resource=download
-Dataset ini dikumpulkan berdasarkan data survei kebiasaan gaya hidup dan pola makan dari berbagai individu, serta label klasifikasi tingkat obesitas berdasarkan kalkulasi Body Mass Index (BMI) dan karakteristik pribadi lainnya
+Dataset yang digunakan dalam proyek ini berasal dari Kaggle. Dataset ini berisi data survei mengenai gaya hidup, pola makan, dan kebiasaan individu yang digunakan untuk mengklasifikasikan tingkat obesitas berdasarkan Body Mass Index (BMI) dan karakteristik lainnya  
+- **URL/Tautan Sumber Data** 
+Dataset yang digunakan dalam proyek ini dapat diunduh melalui link ini: https://www.kaggle.com/datasets/fatemehmehrparvar/obesity-levels?resource=download
+- **Jumlah Baris dan Kolom**
+Dataset yang digunakan ini terdiri dari 2111 baris data dan 17 kolom yang mencerminkan kondisi fisik individu. Tujuan utamanya adalah untuk mengklasifikasikan individu ke salah satu dari ketujuh kelas  
+- **Kondisi Data**
+	- Missing Value: Tidak ditemukan nilai yang hilang dalam dataset
+	- Duplikat: Tidak terdapat duplikasi baris data
+	- Outlier: Outlier terdeteksi pada beberapa fitur numerik seperti Age, Height, dan Weight, dan telah dibersihkan menggunakan metode IQR (Interquartile Range).
 
-Dataset yang digunakan ini terdiri dari 2111 baris data dan 17 kolom yang mencerminkan kondisi fisik individu. Tujuan utamanya adalah untuk mengklasifikasikan individu ke salah satu dari ketujuh kelas
-
-Variabel-variabel dalam dataset adalah sebagai berikut:
+**Variabel-variabel dalam dataset adalah sebagai berikut:**
 - Gender : Jenis kelamin individu (Male / Female)
 - Age : Usia individu (dalam tahun)
 - Height : Tinggi badan (dalam meter)
@@ -89,27 +93,22 @@ Variabel-variabel dalam dataset adalah sebagai berikut:
 	- Obesity_Type_II
 	- Obesity_Type_III
 
-**Rubrik/Kriteria Tambahan (Opsional)**:
-- Import dan pemanggilan data  
-Dataset dimuat menggunakan pandas
-- Pemeriksaan awal dataset  
-Menampilkan 5 baris pertama dengan head(), statistik deskriptif dengan describe()
-- Visualisasi data  
-Visualisasi outlier menggunakan boxplot menggunakan seaborn
-- Pembersihan outlier  
-Outlier dideteksi dan dihapus menggunakan metode IQR
-- Identifikasi fitur  
-Pemisahan fitur numerik dan kategorikal
+**Tahapan**  
+- Pertama-tama dilakukan proses identifikasi struktur dan isi dataset. Dataset dimuat guna memperoleh gambaran umum tentang jumlah fitur, tipe data, serta nilai pada tiap kolom. Informasi tersebutlah yang digunakan untuk dasar dalam menentukan langkah selanjutnya  
+- Lima baris pertama ditampilkan untuk mengecek bentuk dan isi data mentah, sedangkan statistik deskriptif berguna untuk memberikan ringkasan seperti nilai rata-rata, standar deviasi, serta nilai minimum dan maksimum dari tiap fitur numerik. Hal tersebut membantu dalam memahami sebaran nilai serta mendeteksi nilai
+- Visualisasi digunakan untuk alat bantu eksplorasi data, Salah satunya adalah boxplot yang mampu menunjukkan distribusi data serta mendeteksi keberadaan outlier pada fitur numerik. Identifikasi dan juga penghapusan outlier pun juga dilakukan menggunakan metode  Interquartile Range (IQR) agar data lebih bersih
+- Klasifikasi fitur dibagi menjadi dua jenis utama yaitu fitur numerik dan kategorikal. Fitur ini dipisah karena untuk memastikan perlakuan yang sesuai terhadap setiap fitur dalam tahap praproses dan analisis selanjutnya. Dengan memahami tipe data dari masing-masing fitur, proses analisis dapat dilakukan secara tepat dan efisien
 
 ## Data Preparation
-- Memuat dataset
-- Pemeriksaan data kosong dan tipe data
-- Visualisasi dan deteksi outlier
-- Pemisahan fitur kategorikal dan numerikal
-- Pemisahan data latih dan uji
-- Scaling pada fitur numerikal
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
+Dalam tahap Data Preparation ini, dilakukan beberapa proses penting untuk memastikan data siap digunakan dalam pemodelan Machine Learning - Dataset yang telah dimuat kemudian diperiksa untuk memastikan tidak terdapat nilai kosong (missing value) dan semua tipe data sudah sesuai dengan karakteristik fitur masing-masing. Pada dataset ini, tidak ditemukan missing value sehingga tidak diperlukan penanganan khusus untuk missing value
+- Dilakukan visualisasi dan deteksi outlier terutama pada fitur numerikal menggunakan metode boxplot. Outlier yang terdeteksi kemudian diatasi dengan menggunakan metode Interquartile Range (IQR) untuk menghapus nilai-nilai ekstrem yang dapat memengaruhi kinerja model
+- Fitur pada dataset kemudian dipisahkan menjadi dua kelompok utama yaitu fitur kategorikal dan fitur numerikal agar dapat dilakukan proses pemrosesan yang sesuai untuk masing-masing tipe data
+- Dataset dibagi menjadi training set dan test set dengan rasio pembagian yang sesuai, untuk memastikan model dapat diuji performanya secara objektif 
+- Pada fitur numerikal, dilakukan proses scaling menggunakan teknik standardisasi (StandardScaler) agar setiap fitur memiliki rentang nilai dan distribusi yang seragam. Hal ini penting untuk membantu algoritma machine learning yang sensitif terhadap skala data agar dapat belajar secara optimal
+- Seluruh tahapan pemrosesan ini dilakukan secara runtut dan menyeluruh agar data yang digunakan dalam pemodelan sudah bersih, terstruktur, dan sesuai kebutuhan algoritma yang digunakan
+
+**Proses Data Preparation**
 - Memuat dataset
 Dataset diimpor menggunakan pandas untuk kemudian dilakukan eksplorasi awal. Alasan: Membaca data merupakan langkah awal sebelum analisis lebih lanjut
 - Pemeriksaan data kosong dan tipe data
@@ -124,54 +123,90 @@ Data dibagi menjadi X_train, X_test, y_train, y_test menggunakan train_test_spli
 Fitur numerik ['FCVC', 'NCP', 'CH2O', 'FAF', 'TUE'] dinormalisasi menggunakan StandardScaler dari scikit-learn. Alasan: Scaling diperlukan agar semua fitur numerik berada pada skala yang sama, yang penting untuk algoritma seperti KNN dan regresi logistik
 
 ## Modeling
-Dalam proyek ini, saya menggunakan tiga algoritma klasifikasi untuk memprediksi tingkat obesitas seseorang berdasarkan data gaya hidup yaitu: K-Nearest Neighbors (KNN), Random Forest (RF), dan Logistic Regression (LR). Setiap model dievaluasi menggunakan metrik akurasi, precision, recall, dan f1-score pada data uji
+Dalam proyek ini, digunakan tiga algoritma klasifikasi untuk memprediksi tingkat obesitas seseorang berdasarkan data gaya hidup, yaitu K-Nearest Neighbors (KNN), Random Forest (RF), dan Logistic Regression (LR). Setiap model dievaluasi menggunakan metrik akurasi, precision, recall, dan F1-score pada data uji.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- K-Nearest Neighbors (KNN)
-	- Akurasi Training: 0.92
-	- Akurasi Testing: 0.73
-	- Parameter: n_neighbors=5 (default)  
-Kelebihan: Mudah dipahami dan diimplementasikan, Tidak membutuhkan proses pelatihan  
-Kekurangan: Sensitif terhadap skala data dan outlier, Performa menurun pada data yang besar atau banyak fitur
-- Random Forest (RF)
-	- Akurasi Training: 1.00
-	- Akurasi Testing: 0.79
-	- Parameter: default (n_estimators=100)  
-Kelebihan: Mampu menangani data yang kompleks dan fitur yang banyak, Tahan terhadap overfitting dibandingkan decision tree tunggal, Memberikan informasi fitur paling penting  
-Kekurangan: Interpretasi hasil lebih kompleks, Waktu pelatihan bisa lebih lama dibanding model sederhana
-- Logistic Regression (LR)
-	- Akurasi Training: 0.85
-	- Akurasi Testing: 0.57  
-Kelebihan: Cepat dilatih dan memberikan output yang dapat diinterpretasi secara probabilistik, Cocok untuk baseline model  
-Kekurangan: Performa buruk untuk data non-linear, Rentan terhadap multikolinearitas antar fitur
+#### K-Nearest Neighbors (KNN)
 
-- Model Terbaik
+KNN bekerja dengan mengklasifikasikan sebuah data berdasarkan mayoritas kelas dari tetangga terdekatnya. Pada proyek ini, parameter yang digunakan adalah `n_neighbors=5` yang merupakan nilai default.
+
+- **Akurasi Training:** 0.92  
+- **Akurasi Testing:** 0.73  
+- **Kelebihan:** Mudah dipahami dan diimplementasikan, tidak membutuhkan proses pelatihan yang kompleks.  
+- **Kekurangan:** Sensitif terhadap skala data dan outlier, serta performa menurun jika dataset besar atau memiliki banyak fitur.
+
+#### Random Forest (RF)
+
+Random Forest merupakan ensemble learning yang membangun banyak decision tree secara acak dan mengambil hasil voting terbanyak sebagai prediksi akhir. Parameter yang digunakan adalah default, yaitu `n_estimators=100`.
+
+- **Akurasi Training:** 1.00  
+- **Akurasi Testing:** 0.79  
+- **Kelebihan:** Mampu menangani data yang kompleks dengan banyak fitur, lebih tahan terhadap overfitting dibanding decision tree tunggal, serta memberikan informasi mengenai fitur penting.  
+- **Kekurangan:** Interpretasi model lebih kompleks dan waktu pelatihan bisa lebih lama dibanding model sederhana.
+
+#### Logistic Regression (LR)
+
+Logistic Regression memodelkan probabilitas keluaran sebagai fungsi logistik dari kombinasi linier fitur input. Pada proyek ini digunakan parameter default.
+
+- **Akurasi Training:** 0.85  
+- **Akurasi Testing:** 0.57  
+- **Kelebihan:** Cepat dilatih, mudah diinterpretasi secara probabilistik, cocok sebagai baseline model.  
+- **Kekurangan:** Kurang cocok untuk data dengan pola non-linear, dan rentan terhadap multikolinearitas antar fitur.
+
+#### Model Terbaik
+
 Berdasarkan hasil evaluasi pada data uji:
-	- Random Forest memiliki akurasi tertinggi (0.79) dan stabilitas metrik precision, recall, dan f1-score yang baik untuk hampir semua kelas, termasuk kelas dengan jumlah data kecil.
-	- KNN memiliki akurasi lumayan (0.73) namun lebih sensitif terhadap perubahan data, serta beberapa kelas seperti Normal_Weight menunjukkan hasil f1-score yang rendah.
-	- Logistic Regression menunjukkan performa yang paling rendah (0.57) dan tidak mampu memprediksi beberapa kelas dengan baik.
-- Model Terpilih: Random Forest  
-Random Forest dipilih sebagai model terbaik karena memberikan performa paling konsisten dan akurat pada berbagai kelas obesitas, serta memiliki keunggulan dalam menangani data dengan banyak fitur dan ketidakseimbangan antar kelas.
+
+- Random Forest memiliki akurasi tertinggi (0.79) dan metrik precision, recall, serta F1-score yang stabil untuk hampir semua kelas, termasuk kelas dengan jumlah data kecil.  
+- KNN memiliki akurasi yang cukup baik (0.73) namun lebih sensitif terhadap perubahan data dan beberapa kelas seperti *Normal_Weight* menunjukkan F1-score yang rendah.  
+- Logistic Regression menunjukkan performa paling rendah (0.57) dan kesulitan memprediksi beberapa kelas dengan baik.
+
+**Model Terpilih:** Random Forest  
+Random Forest dipilih sebagai model terbaik karena memberikan performa paling konsisten dan akurat pada berbagai kelas obesitas, serta memiliki keunggulan dalam menangani data dengan banyak fitur dan ketidakseimbangan kelas.
 
 ## Evaluation
-- Metrik Evaluasi yang Digunakan
-	- Akurasi (Accuracy): Mengukur proporsi prediksi yang benar dari total keseluruhan data. Akurasi memberikan gambaran umum tentang seberapa baik model dapat mengklasifikasikan data secara benar
-	- Precision: Mengukur ketepatan prediksi positif, yaitu berapa banyak prediksi kelas tertentu yang benar-benar sesuai kelas tersebut
-	- Recall (Sensitivity): Mengukur kemampuan model dalam menemukan seluruh data positif sebenarnya dari suatu kelas. Recall menilai seberapa baik model menangkap seluruh kasus dari kelas tertentu, penting terutama jika false negative harus diminimalkan
-	- F1 Score: Merupakan harmonisasi rata-rata antara precision dan recall. F1 Score berguna sebagai metrik tunggal yang menyeimbangkan kedua aspek tersebut, khususnya ketika dataset tidak seimbang antar kelas
-- Hasil Proyek Berdasarkan Metrik Evaluasi
-	- Random Forest menunjukkan performa terbaik dengan akurasi pengujian mencapai sekitar 78,7%, didukung precision, recall, dan F1 score yang tinggi pada sebagian besar kelas obesitas. Model ini juga memperlihatkan kemampuan generalisasi yang baik antara data training dan testing
-	- K-Nearest Neighbors memiliki akurasi pengujian sekitar 73%, dengan beberapa kelas tertentu seperti Insufficient Weight dan Obesity Type III mendapatkan skor recall yang tinggi, namun ada kelas lain yang performanya kurang optimal
-	- Logistic Regression memiliki akurasi paling rendah (sekitar 57%), dengan ketidakseimbangan recall pada beberapa kelas yang menyebabkan performa kurang memadai untuk tugas klasifikasi multi-kelas ini  
-Dari hasil tersebut, dapat disimpulkan bahwa Random Forest merupakan pilihan model yang paling sesuai untuk klasifikasi tingkat obesitas pada dataset ini, karena mampu memberikan keseimbangan yang baik antara akurasi dan kemampuan mengenali kelas minoritas.
 
-**Rubrik/Kriteria Tambahan (Opsional)**: 
-- Metrik evaluasi dan formula
-Metrik evaluasi yang digunakan dalam proyek ini meliputi akurasi, precision, recall, dan F1 score. Akurasi mengukur proporsi prediksi yang benar dari keseluruhan data yang diuji, sehingga memberikan gambaran umum seberapa baik model dalam melakukan klasifikasi. Namun, akurasi bisa kurang tepat jika data tidak seimbang, sehingga perlu dilengkapi dengan metrik lain. Precision mengukur ketepatan model dalam memprediksi kelas positif, yakni seberapa banyak prediksi positif yang benar-benar relevan. Sementara itu, recall mengukur kemampuan model dalam menemukan semua data positif yang sebenarnya ada, dengan fokus pada minimnya data positif yang terlewatkan. F1 score merupakan rata-rata harmonis antara precision dan recall, memberikan penilaian seimbang antara keduanya terutama dalam kondisi data yang tidak seimbang. Dengan menggunakan keempat metrik ini, evaluasi performa model menjadi lebih komprehensif dan sesuai dengan konteks masalah klasifikasi yang dihadapi
-- Cara kerja matrik
-	- Akurasi menghitung keseluruhan benar/salah prediksi tanpa membedakan jenis kelas, cocok jika distribusi kelas merata
-	- Precision fokus pada kualitas prediksi positif, menghindari terlalu banyak false alarm (false positive)
-	- Recall fokus pada kemampuan menemukan semua kasus positif, menghindari kasus terlewat (false negative)
-	- F1 Score menggabungkan precision dan recall, memberikan gambaran lengkap performa model terutama pada situasi dengan kelas tidak seimbang
+#### Metrik Evaluasi yang Digunakan
+
+- **Akurasi (Accuracy)**  
+Mengukur proporsi prediksi yang benar dari total keseluruhan data. Akurasi memberikan gambaran umum tentang seberapa baik model dapat mengklasifikasikan data secara tepat.
+- **Precision**  
+Mengukur ketepatan prediksi positif, yaitu berapa banyak prediksi kelas tertentu yang benar-benar sesuai dengan kelas tersebut. Precision penting untuk menghindari false positive yang berlebihan.
+- **Recall (Sensitivity)**  
+Mengukur kemampuan model dalam menemukan seluruh data positif sebenarnya dari suatu kelas. Recall menilai seberapa baik model menangkap semua kasus dari kelas tertentu, sangat penting apabila false negative harus diminimalkan.
+- **F1 Score**  
+Merupakan rata-rata harmonis antara precision dan recall, memberikan metrik tunggal yang menyeimbangkan keduanya. F1 score sangat berguna saat dataset tidak seimbang antar kelas.
+
+#### Hasil Evaluasi Model
+
+- K-Nearest Neighbors
+	- Akurasi: 73.0%
+   	- Precision: 0.71
+   	- Recall: 0.70
+   	- F1 Score: 0.70
+- Random Forest
+	- Akurasi: 78.7%
+   	- Precision: 0.79
+   	- Recall: 0.78
+   	- F1 Score: 0.78
+- Logistic Regression
+	- Akurasi: 57.0%
+   	- Precision: 0.55
+   	- Recall: 0.53
+   	- F1 Score: 0.53
+
+#### Kesimpulan dan Model Terbaik
+
+Berdasarkan hasil evaluasi metrik, **Random Forest** menunjukkan performa terbaik dengan keseimbangan antara akurasi dan kemampuan mengenali kelas minoritas secara stabil. Model ini mampu menangani kompleksitas data dan ketidakseimbangan kelas lebih baik dibandingkan KNN dan Logistic Regression
+
+#### Hubungan dengan Business Understanding
+
+Model klasifikasi tingkat obesitas ini memberikan kontribusi penting bagi pengambilan keputusan dalam bidang kesehatan, khususnya:
+- **Menjawab Problem Statement**  
+Model telah mampu memprediksi tingkat obesitas berdasarkan data gaya hidup dengan akurasi yang cukup tinggi, yang artinya sudah menjawab permasalahan utama proyek
+- **Mencapai Goals yang Diharapkan**  
+Model Random Forest yang dipilih memenuhi target untuk klasifikasi multi-kelas yang seimbang dan dapat diandalkan dalam konteks prediksi obesitas
+- **Dampak Solusi terhadap Business**  
+Solusi ini membantu dalam deteksi dini risiko obesitas sehingga memungkinkan intervensi lebih cepat dan tepat sasaran. Ini berpotensi meningkatkan efektivitas program kesehatan masyarakat dan mengurangi biaya perawatan jangka panjang akibat obesitas
+
 
 **---Ini adalah bagian akhir laporan---**
