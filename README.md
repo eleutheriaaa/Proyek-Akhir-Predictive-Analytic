@@ -104,8 +104,10 @@ Dataset yang digunakan ini terdiri dari 2111 baris data dan 17 kolom yang mencer
 Dalam tahap Data Preparation ini, dilakukan beberapa proses penting untuk memastikan data siap digunakan dalam pemodelan Machine Learning - Dataset yang telah dimuat kemudian diperiksa untuk memastikan tidak terdapat nilai kosong (missing value) dan semua tipe data sudah sesuai dengan karakteristik fitur masing-masing. Pada dataset ini, tidak ditemukan missing value sehingga tidak diperlukan penanganan khusus untuk missing value
 - Dilakukan visualisasi dan deteksi outlier terutama pada fitur numerikal menggunakan metode boxplot. Outlier yang terdeteksi kemudian diatasi dengan menggunakan metode Interquartile Range (IQR) untuk menghapus nilai-nilai ekstrem yang dapat memengaruhi kinerja model
 - Fitur pada dataset kemudian dipisahkan menjadi dua kelompok utama yaitu fitur kategorikal dan fitur numerikal agar dapat dilakukan proses pemrosesan yang sesuai untuk masing-masing tipe data
+- Fitur kategorikal seperti Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC, MTRANS diubah menjadi representasi numerik menggunakan One-Hot Encoding, dengan alasan model Machine Learning tidak dapat bekerja dengan data kategorikal langsung, sehingga dilakukan tahap encoding untuk representasi numerik tanpa memberikan urutan pada kategori
+- Setelah encoding dan scaling, dilakukan reduksi dimensi menggunakan PCA terhadap 'Age', 'Height', 'Weight' untuk menyederhanakan kompleksitas fitur dan mempercepat proses pelatihan. Hal ini dilakukan untuk mengurangi fitur sambil mempertahankan informasi penting dari data dan mengurangi beban komputasi
 - Dataset dibagi menjadi training set dan test set dengan rasio pembagian yang sesuai, untuk memastikan model dapat diuji performanya secara objektif 
-- Pada fitur numerikal, dilakukan proses scaling menggunakan teknik standardisasi (StandardScaler) agar setiap fitur memiliki rentang nilai dan distribusi yang seragam. Hal ini penting untuk membantu algoritma machine learning yang sensitif terhadap skala data agar dapat belajar secara optimal
+- Pada fitur numerikal seperti FCVC, NCP, CH2O, FAF, dan TUE, dilakukan proses scaling menggunakan teknik standardisasi (StandardScaler) agar setiap fitur memiliki rentang nilai dan distribusi yang seragam. Hal ini penting untuk membantu algoritma machine learning yang sensitif terhadap skala data agar dapat belajar secara optimal
 - Seluruh tahapan pemrosesan ini dilakukan secara runtut dan menyeluruh agar data yang digunakan dalam pemodelan sudah bersih, terstruktur, dan sesuai kebutuhan algoritma yang digunakan
 
 **Proses Data Preparation**
@@ -117,6 +119,10 @@ Menggunakan df.info() dan df.isnull().sum() untuk mengecek nilai kosong dan tipe
 Fitur numerik seperti Age, Height, dan Weight divisualisasikan menggunakan boxplot. Outlier diidentifikasi dan ditangani menggunakan metode IQR (Interquartile Range). Alasan: Outlier dapat merusak performa model, terutama pada algoritma berbasis jarak seperti KNN
 - Pemisahan fitur kategorikal dan numerikal
 Fitur diklasifikasikan agar bisa diproses sesuai jenisnya. Alasan: Transformasi untuk data kategorikal dan numerikal berbeda. Misalnya, numerik perlu distandarisasi, sementara kategorikal perlu encoding
+- One-Hot Encoding pada Fitur Kategorikal  
+Fitur kategorikal seperti Gender, family_history_with_overweight, FAVC, CAEC, SMOKE, SCC, CALC, MTRANS dan lainnya diubah menjadi representasi numerik menggunakan One-Hot Encoding. Alasan: Model machine learning tidak dapat bekerja dengan data kategorikal langsung, sehingga encoding diperlukan untuk representasi numerik tanpa memberikan urutan pada kategori
+- Reduksi Dimensi dengan Principal Component Analysis (PCA)  
+Setelah encoding dan scaling, dilakukan reduksi dimensi menggunakan PCA untuk menyederhanakan kompleksitas fitur dan mempercepat proses pelatihan. Alasan: Mengurangi jumlah fitur sambil mempertahankan informasi penting dari data, membantu mencegah overfitting dan mengurangi beban komputasi
 - Pemisahan data latih dan uji
 Data dibagi menjadi X_train, X_test, y_train, y_test menggunakan train_test_split. Alasan: Untuk menghindari overfitting dan mengukur generalisasi model
 - Scaling pada Fitur Numerikal
@@ -136,17 +142,27 @@ KNN bekerja dengan mengklasifikasikan sebuah data berdasarkan mayoritas kelas da
 
 #### Random Forest (RF)
 
-Random Forest merupakan ensemble learning yang membangun banyak decision tree secara acak dan mengambil hasil voting terbanyak sebagai prediksi akhir. Parameter yang digunakan adalah default, yaitu `n_estimators=100`.
+Random Forest merupakan ensemble learning yang membangun banyak decision tree secara acak dan mengambil hasil voting terbanyak sebagai prediksi akhir  
+Parameter yang digunakan pada model ini adalah:  
+- n_estimators=100: Jumlah pohon dalam hutan. Sebagai nilai default
+- max_depth=16: Kedalaman maksimum tiap pohon keputusan untuk menghindari overfitting. Pengaturan max_depth bertujuan untuk membatasi kompleksitas model dan mencegah overfitting
+- random_state=55: Untuk memastikan reprodusibilitas hasil. random_state digunakan untuk menjaga hasil
+- n_jobs=-1: Menggunakan seluruh core CPU yang tersedia untuk mempercepat proses pelatihan. n_jobs digunakan untuk proses pelatihan bisa berjalan secara paralel dan lebih efisien
 
+Nilai akurasi yang didapat dengan menggunakan model Random Forest:  
 - **Akurasi Training:** 1.00  
-- **Akurasi Testing:** 0.79  
+- **Akurasi Testing:** 0.78  
 - **Kelebihan:** Mampu menangani data yang kompleks dengan banyak fitur, lebih tahan terhadap overfitting dibanding decision tree tunggal, serta memberikan informasi mengenai fitur penting.  
 - **Kekurangan:** Interpretasi model lebih kompleks dan waktu pelatihan bisa lebih lama dibanding model sederhana.
 
 #### Logistic Regression (LR)
 
-Logistic Regression memodelkan probabilitas keluaran sebagai fungsi logistik dari kombinasi linier fitur input. Pada proyek ini digunakan parameter default.
+Logistic Regression memodelkan probabilitas keluaran sebagai fungsi logistik dari kombinasi linier fitur input  
+Parameter yang digunakan pada model ini adalah: 
+- max_iter=500: untuk memastikan model mencapai konvergensi karena jumlah iterasi default (100) tidak mencukupi
+- random_state=55: untuk menjaga konsistensi hasil 
 
+Nilai akurasi yang didapat dengan menggunakan model Random Forest:  
 - **Akurasi Training:** 0.85  
 - **Akurasi Testing:** 0.57  
 - **Kelebihan:** Cepat dilatih, mudah diinterpretasi secara probabilistik, cocok sebagai baseline model.  
@@ -156,7 +172,7 @@ Logistic Regression memodelkan probabilitas keluaran sebagai fungsi logistik dar
 
 Berdasarkan hasil evaluasi pada data uji:
 
-- Random Forest memiliki akurasi tertinggi (0.79) dan metrik precision, recall, serta F1-score yang stabil untuk hampir semua kelas, termasuk kelas dengan jumlah data kecil.  
+- Random Forest memiliki akurasi tertinggi (0.78) dan metrik precision, recall, serta F1-score yang stabil untuk hampir semua kelas, termasuk kelas dengan jumlah data kecil.  
 - KNN memiliki akurasi yang cukup baik (0.73) namun lebih sensitif terhadap perubahan data dan beberapa kelas seperti *Normal_Weight* menunjukkan F1-score yang rendah.  
 - Logistic Regression menunjukkan performa paling rendah (0.57) dan kesulitan memprediksi beberapa kelas dengan baik.
 
@@ -179,20 +195,38 @@ Merupakan rata-rata harmonis antara precision dan recall, memberikan metrik tung
 #### Hasil Evaluasi Model
 
 - K-Nearest Neighbors
-	- Akurasi: 73.0%
-   	- Precision: 0.71
-   	- Recall: 0.70
-   	- F1 Score: 0.70
-- Random Forest
-	- Akurasi: 78.7%
-   	- Precision: 0.79
-   	- Recall: 0.78
-   	- F1 Score: 0.78
+	- Akurasi Training: 92.2%
+	- Akurasi Testing: 73.0%
+ 	- Akurasi mse (train): 92.19%  
+    	- Akurasi mse (test): 91.49%   
+   	- Precision (macro avg): 0.74
+   	- Precision (weighted avg): 0.76
+   	- Recall (macro avg): 0.71
+   	- Recall (weighted avg): 0.73
+  	- F1 Score (macro avg): 0.69
+   	- F1 Score (weighted avg): 0.71
+- Random Forest  
+  	- Akurasi Training: 100.0%  
+  	- Akurasi Testing: 78.7%
+	- Akurasi  mse (train): 100.0%  
+    	- Akurasi  mse (test): 90.78%  
+  	- Precision (macro avg): 0.79  
+  	- Precision (weighted avg): 0.83  
+  	- Recall (macro avg): 0.76  
+  	- Recall (weighted avg): 0.79  
+  	- F1 Score (macro avg): 0.76
+  	- F1 Score (weighted avg): 0.79  
 - Logistic Regression
-	- Akurasi: 57.0%
-   	- Precision: 0.55
-   	- Recall: 0.53
-   	- F1 Score: 0.53
+	- Akurasi Training: 85.5%  
+	- Akurasi Testing: 57.4%
+	- Akurasi mse (train): 85.49%  
+    	- Akurasi mse (test): 82.98%  
+	- Precision (macro avg): 0.57  
+	- Precision (weighted avg): 0.55  
+	- Recall (macro avg): 0.55  
+	- Recall (weighted avg): 0.57  
+	- F1 Score (macro avg): 0.47  
+	- F1 Score (weighted avg): 0.49 
 
 #### Kesimpulan dan Model Terbaik
 
