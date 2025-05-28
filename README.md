@@ -197,8 +197,8 @@ Merupakan rata-rata harmonis antara precision dan recall, memberikan metrik tung
 - K-Nearest Neighbors
 	- Akurasi Training: 92.2%
 	- Akurasi Testing: 73.0%
- 	- Akurasi mse (train): 92.19%  
-    	- Akurasi mse (test): 91.49%   
+ 	- Akurasi mse (train): 92.19%
+  	- Akurasi mse (test): 91.49%     
    	- Precision (macro avg): 0.74
    	- Precision (weighted avg): 0.76
    	- Recall (macro avg): 0.71
@@ -208,8 +208,8 @@ Merupakan rata-rata harmonis antara precision dan recall, memberikan metrik tung
 - Random Forest  
   	- Akurasi Training: 100.0%  
   	- Akurasi Testing: 78.7%
-	- Akurasi  mse (train): 100.0%  
-    	- Akurasi  mse (test): 90.78%  
+	- Akurasi  mse (train): 100.0%
+ 	- Akurasi  mse (test): 90.78%  
   	- Precision (macro avg): 0.79  
   	- Precision (weighted avg): 0.83  
   	- Recall (macro avg): 0.76  
@@ -219,8 +219,8 @@ Merupakan rata-rata harmonis antara precision dan recall, memberikan metrik tung
 - Logistic Regression
 	- Akurasi Training: 85.5%  
 	- Akurasi Testing: 57.4%
-	- Akurasi mse (train): 85.49%  
-    	- Akurasi mse (test): 82.98%  
+	- Akurasi mse (train): 85.49%
+ 	- Akurasi mse (test): 82.98%  
 	- Precision (macro avg): 0.57  
 	- Precision (weighted avg): 0.55  
 	- Recall (macro avg): 0.55  
